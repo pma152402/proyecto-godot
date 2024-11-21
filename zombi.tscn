@@ -1,0 +1,144 @@
+[gd_scene load_steps=34 format=3 uid="uid://dis6phv511byq"]
+
+[ext_resource type="Script" path="res://zombi.gd" id="1_546s7"]
+[ext_resource type="Texture2D" uid="uid://bjlck7udf3wnv" path="res://assets/zombie/walk/0.png" id="2_483n7"]
+[ext_resource type="Texture2D" uid="uid://dfobd4iik22ho" path="res://assets/zombie/walk/1.png" id="3_gsvse"]
+[ext_resource type="Texture2D" uid="uid://b6ojgh0thcxd8" path="res://assets/zombie/walk/2.png" id="4_dr027"]
+[ext_resource type="Texture2D" uid="uid://too0a0ja4hhk" path="res://assets/zombie/walk/3.png" id="5_6p7y7"]
+[ext_resource type="Texture2D" uid="uid://bx1man1sjggav" path="res://assets/zombie/walk/4.png" id="6_3ch4c"]
+[ext_resource type="Texture2D" uid="uid://baduc6wumb20e" path="res://assets/zombie/walk/5.png" id="7_l7vob"]
+[ext_resource type="Texture2D" uid="uid://iy6rjwuja2n7" path="res://assets/zombie/walk/6.png" id="8_c875k"]
+[ext_resource type="Texture2D" uid="uid://8e6as1uselev" path="res://assets/zombie/walk/7.png" id="9_eail3"]
+[ext_resource type="Texture2D" uid="uid://bgxo8v3tnfc4w" path="res://assets/zombie/run/0.png" id="10_mycjb"]
+[ext_resource type="Texture2D" uid="uid://577ut5srjyss" path="res://assets/zombie/run/1.png" id="11_r2rv3"]
+[ext_resource type="Texture2D" uid="uid://c3ghgvsrfbvkw" path="res://assets/zombie/run/2.png" id="12_fkn30"]
+[ext_resource type="Texture2D" uid="uid://cea8dgb6kbe00" path="res://assets/zombie/run/3.png" id="13_pekdg"]
+[ext_resource type="Texture2D" uid="uid://bik7qxhxtu4s2" path="res://assets/zombie/run/4.png" id="14_h5r56"]
+[ext_resource type="Texture2D" uid="uid://x4wuyan42vuf" path="res://assets/zombie/run/5.png" id="15_5escs"]
+[ext_resource type="Texture2D" uid="uid://bn7tb0ear5gg5" path="res://assets/zombie/run/6.png" id="16_wq1ld"]
+[ext_resource type="Texture2D" uid="uid://bf58s03g1h5h" path="res://assets/zombie/attack/0.png" id="17_1qtae"]
+[ext_resource type="Texture2D" uid="uid://el63jdkb56an" path="res://assets/zombie/attack/1.png" id="18_rd1d5"]
+[ext_resource type="Texture2D" uid="uid://c14eyqr86p16t" path="res://assets/zombie/attack/2.png" id="19_2cos0"]
+[ext_resource type="Texture2D" uid="uid://cy6pvjsq3oc70" path="res://assets/zombie/attack/3.png" id="20_2ygis"]
+[ext_resource type="Texture2D" uid="uid://duykdeklbyk72" path="res://assets/zombie/attack/4.png" id="21_nqxyx"]
+[ext_resource type="Texture2D" uid="uid://cdkaj63jkbhis" path="res://assets/zombie/attack/5.png" id="22_8bfj5"]
+[ext_resource type="Texture2D" uid="uid://cqgd61mogt7lj" path="res://assets/zombie/attack/6.png" id="23_rlpgt"]
+[ext_resource type="Texture2D" uid="uid://dlfjnxhuue6tf" path="res://assets/zombie/attack/7.png" id="24_t86h0"]
+[ext_resource type="Texture2D" uid="uid://cnpschyyc2hyc" path="res://assets/zombie/attack/8.png" id="25_nu8y4"]
+[ext_resource type="Texture2D" uid="uid://cw5tyy7q0t2q" path="res://assets/zombie/attack/9.png" id="26_0fk3k"]
+[ext_resource type="Texture2D" uid="uid://dy0j1yd6p87qq" path="res://assets/zombie/attack/10.png" id="27_2lukf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8bge"]
+size = Vector2(27.875, 60)
+
+[sub_resource type="Animation" id="Animation_5vnjf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_483n7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23.5, -9)]
+}
+
+[sub_resource type="Animation" id="Animation_ndolv"]
+resource_name = "attack"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_1qtae"), ExtResource("18_rd1d5"), ExtResource("19_2cos0"), ExtResource("20_2ygis"), ExtResource("21_nqxyx"), ExtResource("22_8bfj5"), ExtResource("23_rlpgt"), ExtResource("24_t86h0"), ExtResource("25_nu8y4"), ExtResource("26_0fk3k"), ExtResource("27_2lukf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333, 0.666667, 0.8, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16.9375, -9), Vector2(-22, -8), Vector2(-19, -9), Vector2(-23, -9), Vector2(-24, -10), Vector2(-26, -10), Vector2(-19, -10), Vector2(-21.875, -10), Vector2(-18, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_wit8o"]
+resource_name = "running"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("10_mycjb"), ExtResource("11_r2rv3"), ExtResource("12_fkn30"), ExtResource("13_pekdg"), ExtResource("14_h5r56"), ExtResource("15_5escs"), ExtResource("16_wq1ld")]
+}
+
+[sub_resource type="Animation" id="Animation_fqw25"]
+resource_name = "walking"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_483n7"), ExtResource("3_gsvse"), ExtResource("4_dr027"), ExtResource("5_6p7y7"), ExtResource("6_3ch4c"), ExtResource("7_l7vob"), ExtResource("8_c875k"), ExtResource("9_eail3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5whr7"]
+_data = {
+"RESET": SubResource("Animation_5vnjf"),
+"attack": SubResource("Animation_ndolv"),
+"running": SubResource("Animation_wit8o"),
+"walking": SubResource("Animation_fqw25")
+}
+
+[node name="zombi" type="CharacterBody2D"]
+position = Vector2(21, 9)
+script = ExtResource("1_546s7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-22, -8)
+texture = ExtResource("2_483n7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23.5, -9)
+shape = SubResource("RectangleShape2D_a8bge")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5whr7")
+}
