@@ -4,6 +4,15 @@ const velocidad = 100.0
 const velocidad_salto = -500.0
 const multiplicador_correr = 2.0
 
+var vida_jugador = 100
+#signal cambiar_vida(nueva_vida) # como un metodo al que le cambiare la vida en el zombi
+
+# CAMBIAR VIDA Y DETECTAR SI ESTA MUERTO
+func cambiar_vida(modificar_vida):
+	if vida_jugador <= 0:
+		#await get_tree().create_timer(1.1).timeout
+		$Sprite2D.modulate = Color(0, 1, 0, 1)
+		
 
 func _ready():
 	$AnimationPlayer.connect("animation_finished", Callable(self, "_on_animation_finished"))
