@@ -18,9 +18,11 @@ func follow():
 		velocity = position.direction_to(jugador.position) * velocidad
 	
 # ATACAR Y CAMBIAR VIDA AL JUGADOR
-func atacar_jugador(int):
-	if jugador:
-		jugador.cambiar_vida(int)
+func atacar_jugador():
+	jugador.cambiar_vida(50)
+	#jugador.cambiar_vida(int)
+	if jugador.vida_jugador == 0:
+		get_tree().paused = true		
 
 func _physics_process(delta: float) -> void:
 	#Aplicar gravedad
@@ -46,21 +48,20 @@ func _physics_process(delta: float) -> void:
 		if abs(position.x - jugador.position.x) < jugador_shape_size:
 		
 		# SI ESTA JUSTO AL LADO ATACA
-			if abs(position.x - jugador.position.x) < 15:
+			if abs(position.x - jugador.position.x) < 15: #and abs(position.y - jugador.position.y) < 1:
 				$AnimationPlayer.play("attack")
-			
-			# Cambiar color a rojo
 			# Esperamos un poco para que coincida con el mordisco
-			await get_tree().create_timer(1.1).timeout
-			jugador.get_node("Sprite2D").modulate = Color(1, 0.5, 0.5, 1)
-			# Esperamos un segundo
-			await get_tree().create_timer(0.5).timeout
-			
+				await get_tree().create_timer(1.1).timeout
+			# Cambio el color a rojo
+				jugador.get_node("Sprite2D").modulate = Color(1, 0.5, 0.5, 1)
+			# Esperamos medio segundo
+				await get_tree().create_timer(0.5).timeout
 			# LE BAJA VIDA AL JUGADOR
-			atacar_jugador(80)
-			
+				atacar_jugador()  # funciona pero le hace daño desde muy lejos y a veces de cerca no
 			# Volvemos al color original
-			jugador.get_node("Sprite2D").modulate = Color(1, 1, 1, 1)
+				jugador.get_node("Sprite2D").modulate = Color(1, 1, 1, 1)
+	
+	
 			
 
 		# SINO, SIGUE CORRIENDO
