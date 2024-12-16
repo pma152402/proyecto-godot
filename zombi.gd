@@ -8,15 +8,12 @@ const gravedad = 980
 
 var jugador = null
 
-var animacion_anterior = ""
 
 # LOCALIZAR AL JUGADOR
 func _ready():
 	jugador = get_node("../Jugador")
 	if jugador == null:
 		print("fallo la ruta del jugador")
-	
-	$AnimationPlayer.animation_changed.connect(_on_animation_player_animation_changed)
 	
 	
 # PERSEGUIR AL JUGADOR
@@ -36,14 +33,12 @@ func follow():
 
 
 
-#func atacar_jugador():
-#	$AnimationPlayer.play("attack")
-#	print(jugador.vida_jugador)
-#	print("zombie atacando")
+func atacar_jugador():
+	$AnimationPlayer.play("attack")
+	print(jugador.vida_jugador)
+	print("zombie atacando")
 	
-		
-#	if $AnimationPlayer.current_animation == "attack":
-#		jugador.cambiar_vida(10)
+	jugador.cambiar_vida(10)
 		
 
 
@@ -51,9 +46,7 @@ func _physics_process(delta: float) -> void:
 	#Aplicar gravedad
 	if not is_on_floor():
 		position.y += gravedad * delta
-	#else:
-	#	if velocity.y > 0:	#si esta cayendo
-	#		velocity.y = 0  #detengo la velocidad
+	
 	
 	follow()
 	move_and_slide()
@@ -80,7 +73,7 @@ func _physics_process(delta: float) -> void:
 			# Esperamos medio segundo
 				await get_tree().create_timer(0.5).timeout
 			# LE BAJA VIDA AL JUGADOR
-#				atacar_jugador()  # funciona pero le hace daño desde muy lejos y a veces de cerca no
+				#atacar_jugador()  # funciona pero le hace daño desde muy lejos y a veces de cerca no
 				#print("acaba de atacar")
 				
 			# Volvemos al color original
@@ -106,12 +99,8 @@ func _physics_process(delta: float) -> void:
 	
 
 
-
-func _on_animation_player_animation_changed(nueva_animacion: StringName) -> void:
-	print("Animacion anterior: ", animacion_anterior)
-	print("Nueva animacion: ", nueva_animacion)
-	if animacion_anterior == "attack" and nueva_animacion != "attack":
-		jugador.cambiar_vida(10)
-		print("nuevo metodo")
-		
-	animacion_anterior = nueva_animacion
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	# CUANDO ACABE LA ANIMACION DE ATACAR
+	if anim_name == "attack":
+		print("tos mis muertos")
+		atacar_jugador()
