@@ -8,21 +8,44 @@ const gravedad = 980
 
 var jugador = null
 
+var animacion_anterior = ""
+
+# LOCALIZAR AL JUGADOR
 func _ready():
 	jugador = get_node("../Jugador")
 	if jugador == null:
 		print("fallo la ruta del jugador")
 	
+	$AnimationPlayer.animation_changed.connect(_on_animation_player_animation_changed)
+	
+	
+# PERSEGUIR AL JUGADOR
 func follow():
 	if jugador != null:
 		velocity = position.direction_to(jugador.position) * velocidad
 	
+	
+	
+	
 # ATACAR Y CAMBIAR VIDA AL JUGADOR
-func atacar_jugador():
-	jugador.cambiar_vida(50)
-	#jugador.cambiar_vida(int)
-	if jugador.vida_jugador == 0:
-		get_tree().paused = true		
+#func _on_AnimationPlayer_animation_finished(nombre_animacion):
+#	if nombre_animacion == "attack":
+#		atacar_jugador()
+#d	print("nuria envidiosa")
+		
+
+
+
+#func atacar_jugador():
+#	$AnimationPlayer.play("attack")
+#	print(jugador.vida_jugador)
+#	print("zombie atacando")
+	
+		
+#	if $AnimationPlayer.current_animation == "attack":
+#		jugador.cambiar_vida(10)
+		
+
 
 func _physics_process(delta: float) -> void:
 	#Aplicar gravedad
@@ -57,7 +80,9 @@ func _physics_process(delta: float) -> void:
 			# Esperamos medio segundo
 				await get_tree().create_timer(0.5).timeout
 			# LE BAJA VIDA AL JUGADOR
-				atacar_jugador()  # funciona pero le hace daño desde muy lejos y a veces de cerca no
+#				atacar_jugador()  # funciona pero le hace daño desde muy lejos y a veces de cerca no
+				#print("acaba de atacar")
+				
 			# Volvemos al color original
 				jugador.get_node("Sprite2D").modulate = Color(1, 1, 1, 1)
 	
@@ -79,3 +104,14 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
+
+
+
+func _on_animation_player_animation_changed(nueva_animacion: StringName) -> void:
+	print("Animacion anterior: ", animacion_anterior)
+	print("Nueva animacion: ", nueva_animacion)
+	if animacion_anterior == "attack" and nueva_animacion != "attack":
+		jugador.cambiar_vida(10)
+		print("nuevo metodo")
+		
+	animacion_anterior = nueva_animacion

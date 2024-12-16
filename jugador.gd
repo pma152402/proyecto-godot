@@ -4,18 +4,24 @@ const velocidad = 100.0
 const velocidad_salto = -500.0
 const multiplicador_correr = 2.0
 
-var vida_jugador = 100
+var vida_jugador = 200
 #signal cambiar_vida(nueva_vida) # como un metodo al que le cambiare la vida en el zombi
+
 
 # CAMBIAR VIDA Y DETECTAR SI ESTA MUERTO
 func cambiar_vida(modificar_vida):
-	vida_jugador = - modificar_vida
+	vida_jugador = vida_jugador - modificar_vida
+	
+	print("Vida actual: ", vida_jugador)
+	
 	if vida_jugador <= 0:
 		$Sprite2D.modulate = Color(0, 0, 0, 1)
-		print("El jugador esta muerto y se ha vuetlo negro")
+		
+		print("El jugador esta muerto y se ha vuelto negro")
+		
+		get_tree().paused = true		# pausa el juego 
 		
 		# SI MUERE SE PAUSA EL JUEGO PERO AHORA MISMO SUFRE DAÑO ESTANDO A TOMAR POR CULO
-		#get_tree().paused = true
 	else:
 		print("Vida actual: ", vida_jugador)
 

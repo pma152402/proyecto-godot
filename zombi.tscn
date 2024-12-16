@@ -142,3 +142,5 @@ shape = SubResource("RectangleShape2D_a8bge")
 libraries = {
 "": SubResource("AnimationLibrary_5whr7")
 }
+
+[connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
